@@ -15,7 +15,7 @@ public class OrderController {
     //method to create the order
     @PostMapping("create")
     public Order create(){
-        Order order = new Order();
+        Order userOrder = new Order();
 
         Product product = new Product();
 
@@ -37,26 +37,42 @@ public class OrderController {
         product.setIsActive(Boolean.TRUE);
         product.setCreatedDate(new Date());
 
-        order.setId(01);
-        order.setProductsOrdered(Arrays.asList(product)); //setting the products lists
-        order.setCategoryName("Electronics");
-        order.setCreatedDate(new Date());
-        order.setOrderDate(new Date());
-        order.setStatus(OrderStatus.IN_PROGRESS);
-        order.setPaymentStatus(PaymentStatus.PAID);
-        order.setPaymentType(PaymentType.BANK_TRANSFER);
-        order.setDueDate(new Date());
+        userOrder.setId(01);
+        userOrder.setProductsOrdered(Arrays.asList(product)); //setting the products lists
+        userOrder.setCategoryName("Electronics");
+        userOrder.setCreatedDate(new Date());
+        userOrder.setOrderDate(new Date());
+        userOrder.setStatus(OrderStatus.IN_PROGRESS);
+        userOrder.setPaymentStatus(PaymentStatus.PAID);
+        userOrder.setPaymentType(PaymentType.BANK_TRANSFER);
+        userOrder.setDueDate(new Date());
 
-        globalOrder = order;
-        return order;
+        globalOrder = userOrder;
+        return userOrder;
     }
 
     //method to update order
     @PutMapping("update")
-    public Order update (@RequestBody Order userOrder){
+    public Order update(@RequestBody Order userOrder){
 
         userOrder.setOrderDate(new Date());
+        userOrder.setId(04);
+
+        globalOrder = userOrder;
         return userOrder;
 
+    }
+
+    //method to cancel order
+    @PutMapping("cancel/{id}")
+    public String cancel(@PathVariable Integer id, Order userOrder){
+        if (userOrder != null && userOrder.getStatus() == OrderStatus.IN_PROGRESS){
+            userOrder.setStatus(OrderStatus.CANCELED);
+            if (userOrder.getPaymentStatus() == PaymentStatus.PAID){
+                userOrder.setPaymentStatus(PaymentStatus.REFUND);
+            }
+            return "Order " + id + " cancelled successfully";
+        }
+        return "Cancellation failed";
     }
 }
