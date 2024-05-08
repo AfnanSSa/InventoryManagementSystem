@@ -1,9 +1,7 @@
 package com.TRA.tra24Springboot.Controllers;
 
 import com.TRA.tra24Springboot.Models.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -51,5 +49,14 @@ public class OrderController {
 
         globalOrder = order;
         return order;
+    }
+
+    //method to update order
+    @PutMapping("update")
+    public Order update (@RequestBody Order userOrder){
+
+        userOrder.setOrderDate(new Date());
+        return userOrder;
+
     }
 }
