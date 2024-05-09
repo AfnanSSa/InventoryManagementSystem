@@ -4,16 +4,14 @@ import com.TRA.tra24Springboot.Models.Product;
 import com.TRA.tra24Springboot.Models.ProductDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/product")
 public class ProductController {
 
-    Product globalProduct = new Product();
+     public Product globalProduct = new Product();
 
     @PostMapping("add")
     public Product addProduct(){

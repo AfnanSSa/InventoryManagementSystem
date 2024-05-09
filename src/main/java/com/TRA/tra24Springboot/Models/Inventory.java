@@ -9,9 +9,9 @@ public class Inventory extends BaseEntity {
 
     List<Product> products;
     String location;
-    User admin;
-    List<Employee> workers;
-    Supplier supplier;
+    String admin;
+    List<String> workers;
+    String supplier;
     String phoneNumber;
     String openingHours;
     String closingHours;

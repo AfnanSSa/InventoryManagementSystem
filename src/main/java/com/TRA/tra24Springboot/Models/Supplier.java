@@ -15,7 +15,7 @@ public class Supplier extends BaseEntity{
     Date nextDeliveryTime;
     List<Product> expectedProducts;
     String complaints;
-    String paymentMethods; //TODO: Enum for payment methods
+    PaymentType paymentMethods;
     String shippingMethods;
     String minimumOrderQuantity;
     List<Order> orders;
