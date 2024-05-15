@@ -1,5 +1,6 @@
 package com.TRA.tra24Springboot.Services;
 
+import com.TRA.tra24Springboot.DTO.ProductDTO;
 import com.TRA.tra24Springboot.Models.Product;
 import com.TRA.tra24Springboot.Models.ProductDetails;
 import com.TRA.tra24Springboot.Repositories.ProductDetailsRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,6 +18,7 @@ public class ProductServices {
     ProductRepository productRepository; //reference to Product repo
     @Autowired
     ProductDetailsRepository productDetailsRepository; //reference to Product Details repo
+    ProductDTO productDTO;
 
     public Product add(Product product) {
 
@@ -57,8 +60,9 @@ public class ProductServices {
         return "Updated Successfully";
     }
 
-/*    public Product reportProduct() {
-        return globalProduct;
-    }*/
+   public List<ProductDTO> getProduct() {
+        List<Product> products = productRepository.findAll();
+        return productDTO.convertToDTOList(products);
+    }
 
 }
