@@ -1,5 +1,6 @@
 package com.TRA.tra24Springboot.Controllers;
 
+import com.TRA.tra24Springboot.DTO.ProductDTO;
 import com.TRA.tra24Springboot.Models.Product;
 import com.TRA.tra24Springboot.Models.ProductDetails;
 import com.TRA.tra24Springboot.Repositories.ProductRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -30,6 +32,12 @@ public class ProductController {
     @PutMapping("update")
     public String updateProduct(@RequestParam Integer id, @RequestParam Integer quantity) {
         return productServices.updateProductQuantity(id, quantity);
+    }
+
+    @GetMapping("get")
+    public List<ProductDTO> getProducts(){
+
+        return productServices.getProduct();
     }
 
 }
