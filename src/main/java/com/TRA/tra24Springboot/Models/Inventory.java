@@ -16,11 +16,11 @@ public class Inventory extends BaseEntity {
     String location;
     String admin;
     List<String> workers;
-    String supplier;
+    @OneToMany
+    List<Supplier> supplier;
     String phoneNumber;
     String openingHours;
     String closingHours;
-
 
 
 }

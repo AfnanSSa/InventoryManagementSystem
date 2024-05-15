@@ -29,7 +29,7 @@ public class Supplier extends BaseEntity{
     String complaints;
     PaymentType paymentMethods;
     String shippingMethods;
-    String minimumOrderQuantity;
+    Integer minimumOrderQuantity;
 
     @OneToMany
     List<Order> orders;

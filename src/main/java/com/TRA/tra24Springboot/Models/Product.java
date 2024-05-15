@@ -2,9 +2,8 @@ package com.TRA.tra24Springboot.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
-import lombok.*;
+import lombok.Data;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Data
