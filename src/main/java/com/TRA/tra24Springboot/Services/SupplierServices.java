@@ -1,5 +1,6 @@
 package com.TRA.tra24Springboot.Services;
 
+import com.TRA.tra24Springboot.DTO.SupplierDTO;
 import com.TRA.tra24Springboot.Models.*;
 import com.TRA.tra24Springboot.Repositories.OrderRepository;
 import com.TRA.tra24Springboot.Repositories.ProductDetailsRepository;
@@ -7,11 +8,13 @@ import com.TRA.tra24Springboot.Repositories.ProductRepository;
 import com.TRA.tra24Springboot.Repositories.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
+
+;
 
 @Service
 public class SupplierServices {
@@ -25,8 +28,7 @@ public class SupplierServices {
     @Autowired
     OrderRepository orderRepository; //reference to Order repo
 
-    @Autowired
-    ProductServices productServices;
+    SupplierDTO supplierDTO;
 
     public Supplier add(Supplier supplier) {
 
@@ -68,7 +70,6 @@ public class SupplierServices {
         supplier.setCompanyName("Dell");
         supplier.setOrders(Arrays.asList(order));
         supplier.setCountry("USA");
-        //supplier.setContactDetails(contactDetails);
         supplier.setMinimumOrderQuantity(2);
         supplier.setCreatedDate(new Date());
         supplier.setIsActive(Boolean.TRUE);
@@ -91,5 +92,10 @@ public class SupplierServices {
         System.out.println(supplier.toString());
         supplierRepository.save(supplier);
         return "Removed Successfully";
+    }
+
+    public List<SupplierDTO> getSuppliers(){
+        List<Supplier> suppliers = supplierRepository.findAll();
+        return supplierDTO.convertToDTOList(suppliers);
     }
 }
