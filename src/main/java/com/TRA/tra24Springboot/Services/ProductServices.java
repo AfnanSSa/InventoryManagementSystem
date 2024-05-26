@@ -8,7 +8,6 @@ import com.TRA.tra24Springboot.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -66,8 +65,14 @@ public class ProductServices {
         return productDTO.convertToDTOList(products);
     }
 
+    public Product getProductByID(Integer productID){
+        return productRepository.getProductByID(productID);
+    }
+
    public List<Product> getProductByName(String productName){
         return productRepository.getProductByName(productName);
    }
-
+    public List<Product> getProductByCountryOfOrigin(String country){
+        return productRepository.getProductByCountryOfOrigin(country);
+    }
 }
