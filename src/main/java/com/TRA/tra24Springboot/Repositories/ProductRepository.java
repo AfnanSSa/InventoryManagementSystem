@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public interface ProductRepository extends JpaRepository <Product, Integer>{
 
@@ -31,6 +32,10 @@ public interface ProductRepository extends JpaRepository <Product, Integer>{
     //Query to get product by color
     @Query("SELECT p FROM Product p WHERE p.productDetails.color =:color")
     List<Product> getProductByColor(@Param("color") String color);
+
+    //Query to get product by SKU
+    @Query("SELECT p FROM Product p WHERE p.sku=:sku")
+    Product getProductBySKU(@Param("sku") UUID sku);
 /*
     //Query to get product by price
     @Query("SELECT p FROM Product p WHERE p.ProductDetails.price=:price")
@@ -40,9 +45,7 @@ public interface ProductRepository extends JpaRepository <Product, Integer>{
     @Query("SELECT p FROM Product p WHERE p.category=:category")
     Product getProductByCategory(@Param("category") String category);
 
-    //Query to get product by SKU
-    @Query("SELECT p FROM Product p WHERE p.sku=:sku")
-    Product getProductBySKU(@Param("sku") UUID sku);*/
+    */
 
 
 
