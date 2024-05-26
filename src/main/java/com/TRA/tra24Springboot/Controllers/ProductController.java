@@ -56,4 +56,9 @@ public class ProductController {
         return productServices.getProductBySize(size);
     }
 
+    @GetMapping("getByColor")
+    public List<Product> getProductByColor(@RequestParam String color){
+        return productServices.getProductByColor(color);
+    }
+
 }
