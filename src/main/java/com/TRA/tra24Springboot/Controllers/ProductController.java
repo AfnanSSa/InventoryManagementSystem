@@ -40,4 +40,9 @@ public class ProductController {
         return productServices.getProduct();
     }
 
+    @GetMapping("getByName")
+    public List<Product> getProductByName(@RequestParam String productName){
+        return productServices.getProductByName(productName);
+    }
+
 }
