@@ -75,4 +75,9 @@ public class ProductServices {
     public List<Product> getProductByCountryOfOrigin(String country){
         return productRepository.getProductByCountryOfOrigin(country);
     }
+
+    public List<Product> getProductBySize(String size){
+        return productRepository.getProductBySize(size);
+    }
+
 }
