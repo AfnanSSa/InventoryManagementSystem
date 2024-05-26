@@ -84,4 +84,8 @@ public class ProductServices {
         return productRepository.getProductByColor(color);
     }
 
+    public Product getProductBySKU(UUID sku){
+        return productRepository.getProductBySKU(sku);
+    }
+
 }
