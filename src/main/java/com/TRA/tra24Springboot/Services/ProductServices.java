@@ -88,4 +88,7 @@ public class ProductServices {
         return productRepository.getProductBySKU(sku);
     }
 
+    public List<Product> getProductByCategory(String category){
+        return productRepository.getProductByCategory(category);
+    }
 }
