@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository <Product, Integer>{
@@ -21,15 +22,12 @@ public interface ProductRepository extends JpaRepository <Product, Integer>{
     //Query to get product by country of origin
     @Query ("SELECT p FROM Product p WHERE p.productDetails.countryOfOrigin =:country")
     List<Product> getProductByCountryOfOrigin(@Param("country") String countryOfOrigin);
-/*
-    //Query to get product by expiry date
-    @Query("SELECT p FROM Product p WHERE p.expiryDate=:expiryDate")
-    Product getProductByExpiryDate(@Param("expiryDate") Date expiryDate);
 
     //Query to get product by size
-    @Query("SELECT p FROM Product p WHERE p.ProductDetails.size=:size")
-    Product getProductBySize(@Param("size") String size);
+    @Query("SELECT p FROM Product p WHERE p.productDetails.size =:size")
+    List<Product> getProductBySize(@Param("size") String size);
 
+    /*
     //Query to get product by color
     @Query("SELECT p FROM Product p WHERE p.ProductDetails.color=:color")
     Product getProductByColor(@Param("color") String color);
