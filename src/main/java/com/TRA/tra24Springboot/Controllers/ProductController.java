@@ -67,4 +67,8 @@ public class ProductController {
         return productServices.getProductBySKU(sku);
     }
 
+    @GetMapping("getByCategory")
+    public List<Product> getProductByCategory(@RequestParam String category){
+        return productServices.getProductByCategory(category);
+    }
 }
