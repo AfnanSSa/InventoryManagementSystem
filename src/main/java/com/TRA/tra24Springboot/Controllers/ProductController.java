@@ -2,15 +2,11 @@ package com.TRA.tra24Springboot.Controllers;
 
 import com.TRA.tra24Springboot.DTO.ProductDTO;
 import com.TRA.tra24Springboot.Models.Product;
-import com.TRA.tra24Springboot.Models.ProductDetails;
-import com.TRA.tra24Springboot.Repositories.ProductRepository;
 import com.TRA.tra24Springboot.Services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/product")
@@ -40,9 +36,19 @@ public class ProductController {
         return productServices.getProduct();
     }
 
+    @GetMapping("getById")
+    public Product getProductByID(@RequestParam Integer productID){
+        return productServices.getProductByID(productID);
+    }
+
     @GetMapping("getByName")
     public List<Product> getProductByName(@RequestParam String productName){
         return productServices.getProductByName(productName);
+    }
+
+    @GetMapping("getByCountry")
+    public List<Product> getProductByCountryOfOrigin(@RequestParam String country){
+        return productServices.getProductByCountryOfOrigin(country);
     }
 
 }
