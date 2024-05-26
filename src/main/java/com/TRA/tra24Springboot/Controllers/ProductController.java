@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/product")
@@ -59,6 +60,11 @@ public class ProductController {
     @GetMapping("getByColor")
     public List<Product> getProductByColor(@RequestParam String color){
         return productServices.getProductByColor(color);
+    }
+
+    @GetMapping("getBySKU")
+    public Product getProductByID(@RequestParam UUID sku){
+        return productServices.getProductBySKU(sku);
     }
 
 }
