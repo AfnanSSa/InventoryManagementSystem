@@ -51,4 +51,9 @@ public class ProductController {
         return productServices.getProductByCountryOfOrigin(country);
     }
 
+    @GetMapping("getBySize")
+    public List<Product> getProductBySize(@RequestParam String size){
+        return productServices.getProductBySize(size);
+    }
+
 }
