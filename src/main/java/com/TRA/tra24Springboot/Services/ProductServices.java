@@ -80,4 +80,8 @@ public class ProductServices {
         return productRepository.getProductBySize(size);
     }
 
+    public List<Product> getProductByColor(String color){
+        return productRepository.getProductByColor(color);
+    }
+
 }
