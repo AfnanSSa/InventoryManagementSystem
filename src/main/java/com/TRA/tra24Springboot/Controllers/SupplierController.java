@@ -38,4 +38,9 @@ public class SupplierController {
     public List<SupplierDTO> getAll(){
         return supplierServices.getSuppliers();
     }
+
+    @GetMapping("getById")
+    public Supplier getSupplierBy(@RequestParam Integer supplierID){
+        return supplierServices.getSupplierById(supplierID);
+    }
 }
