@@ -83,9 +83,13 @@ public class OrderServices {
     }
 
 
-    public List<OrderDTO> getOrder (){
+    public List<OrderDTO> getOrder(){
         List<Order> orders = orderRepository.findAll();
         return orderDTO.convertToDTOList(orders);
+    }
+
+    public Order getOrderById(Integer orderID){
+        return orderRepository.getOrderById(orderID);
     }
 
 }
