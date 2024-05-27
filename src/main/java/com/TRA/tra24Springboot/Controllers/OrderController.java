@@ -4,6 +4,7 @@ import com.TRA.tra24Springboot.DTO.OrderDTO;
 import com.TRA.tra24Springboot.Models.Order;
 import com.TRA.tra24Springboot.Models.OrderStatus;
 import com.TRA.tra24Springboot.Models.PaymentStatus;
+import com.TRA.tra24Springboot.Models.PaymentType;
 import com.TRA.tra24Springboot.Services.OrderServices;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,11 @@ public class OrderController {
     @GetMapping("getByPaymentStatus")
     public List<Order> getOrderByPaymentStatus(@RequestParam PaymentStatus paymentStatus){
         return orderServices.getOrderByPaymentStatus(paymentStatus);
+    }
+
+    @GetMapping("getByPaymentType")
+    public List<Order> getOrderByPaymentStatus(@RequestParam PaymentType paymentType){
+        return orderServices.getOrderByPaymentType(paymentType);
     }
 
 }
