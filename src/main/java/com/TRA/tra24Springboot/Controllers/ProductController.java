@@ -71,4 +71,9 @@ public class ProductController {
     public List<Product> getProductByCategory(@RequestParam String category){
         return productServices.getProductByCategory(category);
     }
+
+    @GetMapping("getByPrice")
+    public List<Product> getProductByPrice(@RequestParam Double price){
+        return productServices.getProductByPrice(price);
+    }
 }
