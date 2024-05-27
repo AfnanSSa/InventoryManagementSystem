@@ -53,4 +53,9 @@ public class SupplierController {
     public List<Supplier> getSupplierByCountry(@RequestParam String country){
         return supplierServices.getSupplierByCountry(country);
     }
+
+    @GetMapping("getByMini")
+    public List<Supplier> getSupplierByMinimumQty(@RequestParam Integer minimum){
+        return supplierServices.getSupplierByMinimumQty(minimum);
+    }
 }
