@@ -110,4 +110,8 @@ public class SupplierServices {
     public List<Supplier> getSupplierByCountry(String country){
         return supplierRepository.getSupplierByCountry(country);
     }
+
+    public List<Supplier> getSupplierByMinimumQty(Integer minimumOrderQuantity){
+        return supplierRepository.getSupplierByMinimumOrderQty(minimumOrderQuantity);
+    }
 }
