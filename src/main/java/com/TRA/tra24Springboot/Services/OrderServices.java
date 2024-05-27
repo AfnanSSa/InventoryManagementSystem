@@ -103,4 +103,8 @@ public class OrderServices {
     public List<Order> getOrderByPaymentStatus(PaymentStatus paymentStatus){
         return orderRepository.getOrderByPaymentStatus(paymentStatus);
     }
+
+    public List<Order> getOrderByPaymentType(PaymentType paymentType){
+        return orderRepository.getOrderByPaymentType(paymentType);
+    }
 }
