@@ -100,4 +100,7 @@ public class OrderServices {
         return orderRepository.getOrderByStatus(status);
     }
 
+    public List<Order> getOrderByPaymentStatus(PaymentStatus paymentStatus){
+        return orderRepository.getOrderByPaymentStatus(paymentStatus);
+    }
 }
