@@ -2,6 +2,7 @@ package com.TRA.tra24Springboot.Controllers;
 
 import com.TRA.tra24Springboot.DTO.OrderDTO;
 import com.TRA.tra24Springboot.Models.Order;
+import com.TRA.tra24Springboot.Models.OrderStatus;
 import com.TRA.tra24Springboot.Services.OrderServices;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,13 @@ public class OrderController {
     }
 
     @GetMapping("getByCategory")
-    public List<Order> getByCategoryName(@RequestParam String categoryName){
+    public List<Order> getOrderByCategoryName(@RequestParam String categoryName){
         return orderServices.getOrderByCategoryName(categoryName);
+    }
+
+    @GetMapping("getByStatus")
+    public List<Order> getOrderByStatus(@RequestParam OrderStatus status){
+        return orderServices.getOrderByStatus(status);
     }
 
 }
