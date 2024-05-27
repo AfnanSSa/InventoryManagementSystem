@@ -96,4 +96,8 @@ public class OrderServices {
         return orderRepository.getOrderByCategoryName(categoryName);
     }
 
+    public List<Order> getOrderByStatus(OrderStatus status){
+        return orderRepository.getOrderByStatus(status);
+    }
+
 }
