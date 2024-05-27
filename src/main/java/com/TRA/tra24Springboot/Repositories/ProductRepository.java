@@ -34,20 +34,18 @@ public interface ProductRepository extends JpaRepository <Product, Integer>{
     List<Product> getProductByColor(@Param("color") String color);
 
     //Query to get product by SKU
-    @Query("SELECT p FROM Product p WHERE p.sku=:sku")
+    @Query("SELECT p FROM Product p WHERE p.sku =:sku")
     Product getProductBySKU(@Param("sku") UUID sku);
 
     //Query to get product by category
-    @Query("SELECT p FROM Product p WHERE p.category=:category")
+    @Query("SELECT p FROM Product p WHERE p.category =:category")
     List<Product> getProductByCategory(@Param("category") String category);
-/*
+
     //Query to get product by price
-    @Query("SELECT p FROM Product p WHERE p.ProductDetails.price=:price")
-    Product getProductByPrice(@Param("price") Double price);
+    @Query("SELECT p FROM Product p WHERE p.productDetails.price =:price")
+    List<Product> getProductByPrice(@Param("price") Double price);
 
 
-
-    */
 
 
 
