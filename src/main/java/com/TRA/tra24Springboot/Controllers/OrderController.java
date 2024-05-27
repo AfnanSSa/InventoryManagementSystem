@@ -3,6 +3,7 @@ package com.TRA.tra24Springboot.Controllers;
 import com.TRA.tra24Springboot.DTO.OrderDTO;
 import com.TRA.tra24Springboot.Models.Order;
 import com.TRA.tra24Springboot.Services.OrderServices;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +40,9 @@ public class OrderController {
         return orderServices.getOrder();
     }
 
+    @GetMapping("getById")
+    public Order getOrderById(@RequestParam Integer orderID){
+        return orderServices.getOrderById(orderID);
+    }
 
 }
