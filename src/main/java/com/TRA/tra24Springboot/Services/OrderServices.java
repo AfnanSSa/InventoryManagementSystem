@@ -92,4 +92,8 @@ public class OrderServices {
         return orderRepository.getOrderById(orderID);
     }
 
+    public List<Order> getOrderByCategoryName(String categoryName){
+        return orderRepository.getOrderByCategoryName(categoryName);
+    }
+
 }
