@@ -45,4 +45,9 @@ public class OrderController {
         return orderServices.getOrderById(orderID);
     }
 
+    @GetMapping("getByCategory")
+    public List<Order> getByCategoryName(@RequestParam String categoryName){
+        return orderServices.getOrderByCategoryName(categoryName);
+    }
+
 }
