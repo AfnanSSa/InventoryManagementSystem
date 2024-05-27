@@ -91,4 +91,8 @@ public class ProductServices {
     public List<Product> getProductByCategory(String category){
         return productRepository.getProductByCategory(category);
     }
+
+    public List<Product> getProductByPrice (Double price){
+        return productRepository.getProductByPrice(price);
+    }
 }
