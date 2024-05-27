@@ -76,4 +76,9 @@ public class ProductController {
     public List<Product> getProductByPrice(@RequestParam Double price){
         return productServices.getProductByPrice(price);
     }
+
+    @GetMapping("getByAvailability")
+    public List<Product> getProductByAvailability(@RequestParam Boolean isActive){
+        return productServices.getProductByAvailability(isActive);
+    }
 }
