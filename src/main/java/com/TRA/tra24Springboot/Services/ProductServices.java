@@ -95,4 +95,8 @@ public class ProductServices {
     public List<Product> getProductByPrice (Double price){
         return productRepository.getProductByPrice(price);
     }
+
+    public List<Product> getProductByAvailability(Boolean isActive){
+        return productRepository.getProductByAvailability(isActive);
+    }
 }
