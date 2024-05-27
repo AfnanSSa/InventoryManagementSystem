@@ -98,4 +98,8 @@ public class SupplierServices {
         List<Supplier> suppliers = supplierRepository.findAll();
         return supplierDTO.convertToDTOList(suppliers);
     }
+
+    public Supplier getSupplierById(Integer supplierId){
+        return supplierRepository.getSupplierById(supplierId);
+    }
 }
