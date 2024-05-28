@@ -117,7 +117,11 @@ public class SupplierServices {
         return supplierRepository.getSupplierByMinimumOrderQty(minimumOrderQuantity);
     }
 
-    public List<Supplier> getSupplierByShippingMethod (String shippingMethods){
+    public List<Supplier> getSupplierByShippingMethod(String shippingMethods){
         return supplierRepository.getSupplierByShippingMethod(shippingMethods);
+    }
+
+    public List<Supplier> getSupplierByPaymentMethod(PaymentType paymentMethods){
+        return supplierRepository.getSupplierByPaymentMethod(paymentMethods);
     }
 }
