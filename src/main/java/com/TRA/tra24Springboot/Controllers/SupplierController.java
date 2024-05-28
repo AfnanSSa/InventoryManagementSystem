@@ -1,6 +1,7 @@
 package com.TRA.tra24Springboot.Controllers;
 
 import com.TRA.tra24Springboot.DTO.SupplierDTO;
+import com.TRA.tra24Springboot.Models.PaymentType;
 import com.TRA.tra24Springboot.Models.Supplier;
 import com.TRA.tra24Springboot.Services.SupplierServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,10 @@ public class SupplierController {
     @GetMapping("getByMethod")
     public List<Supplier> getSupplierByShippingMethod (@RequestParam String shippingMethod){
         return supplierServices.getSupplierByShippingMethod(shippingMethod);
+    }
+
+    @GetMapping("getByPayment")
+    public List<Supplier> getSupplierByPaymentMethod(@RequestParam PaymentType paymentMethods){
+        return supplierServices.getSupplierByPaymentMethod(paymentMethods);
     }
 }
