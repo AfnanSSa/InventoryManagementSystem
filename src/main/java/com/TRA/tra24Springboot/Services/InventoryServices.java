@@ -2,10 +2,7 @@ package com.TRA.tra24Springboot.Services;
 
 import com.TRA.tra24Springboot.DTO.InventoryDTO;
 import com.TRA.tra24Springboot.Models.*;
-import com.TRA.tra24Springboot.Repositories.InventoryRepository;
-import com.TRA.tra24Springboot.Repositories.OrderRepository;
-import com.TRA.tra24Springboot.Repositories.ProductRepository;
-import com.TRA.tra24Springboot.Repositories.SupplierRepository;
+import com.TRA.tra24Springboot.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +25,9 @@ public class InventoryServices {
     @Autowired
     SupplierRepository supplierRepository;
 
+    @Autowired
+    ProductDetailsRepository productDetailsRepository;
+
     InventoryDTO inventoryDTO;
 
     //method for receiving new stock
@@ -39,6 +39,7 @@ public class InventoryServices {
         productDetails.setPrice(350d);
         productDetails.setCountryOfOrigin("USA");
         productDetails.setCreatedDate(new Date());
+        productDetails = productDetailsRepository.save(productDetails);
 
         Product product = new Product();
         product.setProductDetails(productDetails);
@@ -103,6 +104,10 @@ public class InventoryServices {
     public List<InventoryDTO> getInventory() {
         List<Inventory> inventories = inventoryRepository.findAll();
         return inventoryDTO.convertToDTOList(inventories);
+    }
+
+    public Inventory getInventoryById(Integer inventoryID){
+        return inventoryRepository.getInventoryById(inventoryID);
     }
 
 }
