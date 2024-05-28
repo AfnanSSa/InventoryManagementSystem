@@ -40,5 +40,10 @@ public class  InventoryController {
         return inventoryServices.getInventory();
     }
 
+    @GetMapping("getById")
+    public Inventory getInventoryById(@RequestParam Integer inventoryID){
+        return inventoryServices.getInventoryById(inventoryID);
+    }
+
 }
 
