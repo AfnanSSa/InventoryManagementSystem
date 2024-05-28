@@ -22,7 +22,12 @@ public interface SupplierRepository extends JpaRepository <Supplier, Integer> {
     @Query("SELECT s FROM Supplier s WHERE s.country =:country")
     List<Supplier> getSupplierByCountry(@Param("country") String country);
 
+    //Query to get supplier by minimum order quantity
     @Query("SELECT s FROM Supplier s WHERE s.minimumOrderQuantity =:minimumOrderQuantity")
     List<Supplier> getSupplierByMinimumOrderQty (@Param("minimumOrderQuantity") Integer minimumOrderQuantity);
+
+    //query to get supplier by shipping method
+    @Query("SELECT s FROM Supplier s WHERE s.shippingMethods =:shippingMethods")
+    List<Supplier> getSupplierByShippingMethod(@Param("shippingMethods") String shippingMethods);
 
 }
