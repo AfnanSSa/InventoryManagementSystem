@@ -58,4 +58,9 @@ public class SupplierController {
     public List<Supplier> getSupplierByMinimumQty(@RequestParam Integer minimum){
         return supplierServices.getSupplierByMinimumQty(minimum);
     }
+
+    @GetMapping("getByMethod")
+    public List<Supplier> getSupplierByShippingMethod (@RequestParam String shippingMethod){
+        return supplierServices.getSupplierByShippingMethod(shippingMethod);
+    }
 }
