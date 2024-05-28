@@ -67,12 +67,14 @@ public class SupplierServices {
         contactDetails.setPhoneNumber("12345678");
         contactDetails.setPostalCode("123");
 
-        supplier.setCompanyName("Dell");
+        supplier.setCompanyName("Apple");
         supplier.setOrders(Arrays.asList(order));
         supplier.setCountry("USA");
-        supplier.setMinimumOrderQuantity(2);
+        supplier.setMinimumOrderQuantity(5);
         supplier.setCreatedDate(new Date());
         supplier.setIsActive(Boolean.TRUE);
+        supplier.setPaymentMethods(PaymentType.BANK_TRANSFER);
+        supplier.setShippingMethods("Air");
 
         return supplierRepository.save(supplier);
     }
@@ -113,5 +115,9 @@ public class SupplierServices {
 
     public List<Supplier> getSupplierByMinimumQty(Integer minimumOrderQuantity){
         return supplierRepository.getSupplierByMinimumOrderQty(minimumOrderQuantity);
+    }
+
+    public List<Supplier> getSupplierByShippingMethod (String shippingMethods){
+        return supplierRepository.getSupplierByShippingMethod(shippingMethods);
     }
 }
