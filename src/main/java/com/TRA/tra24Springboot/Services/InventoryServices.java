@@ -80,6 +80,7 @@ public class InventoryServices {
         inventory.setClosingHours("8 PM");
         inventory.setWorkers(Arrays.asList("Jack", "Andrew", "Sam"));
         inventory.setCreatedDate(new Date());
+        inventory.setIsActive(Boolean.TRUE);
 
         return inventoryRepository.save(inventory);
     }
@@ -108,6 +109,10 @@ public class InventoryServices {
 
     public Inventory getInventoryById(Integer inventoryID){
         return inventoryRepository.getInventoryById(inventoryID);
+    }
+
+    public List<Inventory> getInventoryByAvailability(Boolean isActive){
+        return inventoryRepository.getInventoryByAvailability(isActive);
     }
 
 }
