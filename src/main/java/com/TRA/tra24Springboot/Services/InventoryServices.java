@@ -72,9 +72,9 @@ public class InventoryServices {
         supplier = supplierRepository.save(supplier);
 
         inventory.setProducts(Arrays.asList(product));
-        inventory.setLocation("Sohar");
-        inventory.setAdmin("Afnan");
-        inventory.setPhoneNumber("12345678");
+        inventory.setLocation("Salalah");
+        inventory.setAdmin("Noura");
+        inventory.setPhoneNumber("12345778");
         inventory.setSupplier(Arrays.asList(supplier));
         inventory.setOpeningHours("8 AM");
         inventory.setClosingHours("8 PM");
@@ -113,6 +113,10 @@ public class InventoryServices {
 
     public List<Inventory> getInventoryByAvailability(Boolean isActive){
         return inventoryRepository.getInventoryByAvailability(isActive);
+    }
+
+    public List<Inventory> getInventoryByLocation(String location){
+        return inventoryRepository.getInventoryByLocation(location);
     }
 
 }
