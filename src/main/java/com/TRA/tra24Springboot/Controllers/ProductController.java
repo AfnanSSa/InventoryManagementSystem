@@ -4,6 +4,8 @@ import com.TRA.tra24Springboot.DTO.ProductDTO;
 import com.TRA.tra24Springboot.Models.Product;
 import com.TRA.tra24Springboot.Services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +24,13 @@ public class ProductController {
     }
 
     @PostMapping("delete")
-    public String delete(@RequestParam Integer id) {
-       return productServices.delete(id);
+    public <T> ResponseEntity<T> delete(@RequestParam Integer id) throws Exception {
+        try {
+            String result = productServices.delete(id);
+            return (ResponseEntity<T>) new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e){
+            return (ResponseEntity<T>) new ResponseEntity<>("Deleting failed! " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("update")
@@ -32,9 +39,9 @@ public class ProductController {
     }
 
     @GetMapping("get")
-    public List<ProductDTO> getProducts(){
+    public <T> ResponseEntity<T> getProducts(){
 
-        return productServices.getProduct();
+        return new ResponseEntity(productServices.getProduct(), HttpStatus.OK) ;
     }
 
     @GetMapping("getById")
