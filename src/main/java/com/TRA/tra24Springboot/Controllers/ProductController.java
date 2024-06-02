@@ -1,6 +1,5 @@
 package com.TRA.tra24Springboot.Controllers;
 
-import com.TRA.tra24Springboot.DTO.ProductDTO;
 import com.TRA.tra24Springboot.Models.Product;
 import com.TRA.tra24Springboot.Services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,13 @@ public class ProductController {
     }
 
     @PutMapping("update")
-    public String updateProduct(@RequestParam Integer id, @RequestParam Integer quantity) {
-        return productServices.updateProductQuantity(id, quantity);
+    public <T> ResponseEntity<T> updateProduct(@RequestParam Integer id, @RequestParam Integer quantity) {
+        try {
+            String result = productServices.updateProductQuantity(id, quantity);
+            return (ResponseEntity<T>) new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e){
+            return (ResponseEntity<T>) new ResponseEntity<>("Updating Failed! " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("get")
