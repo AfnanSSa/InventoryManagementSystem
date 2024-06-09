@@ -8,6 +8,8 @@ import com.TRA.tra24Springboot.Models.PaymentType;
 import com.TRA.tra24Springboot.Services.OrderServices;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +28,13 @@ public class OrderController {
 
     //method to update order
     @PutMapping("update")
-    public String update(@RequestBody Order order) {
-        return orderServices.update(order);
+    public <T> ResponseEntity<T> update(@RequestParam Integer id) {
+        try {
+            String result = orderServices.update(id);
+            return (ResponseEntity<T>) new ResponseEntity<>(result, HttpStatus.OK);
+        }catch (Exception e){
+            return (ResponseEntity<T>) new ResponseEntity<>("Updating Failed! " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
     }
 
