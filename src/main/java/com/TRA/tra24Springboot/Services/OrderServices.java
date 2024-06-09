@@ -64,12 +64,11 @@ public class OrderServices {
 
     //method to update order
     @PutMapping("update")
-    public String update(@RequestBody Order order){
-
+    public String update(Integer id){
+        Order order = orderRepository.getById(id);
         order.setOrderDate(new Date());
         orderRepository.save(order);
         return "Updated successfully";
-
     }
 
     //method to cancel order
