@@ -40,8 +40,13 @@ public class OrderController {
 
     //method to cancel order
     @PutMapping("cancel")
-    public String cancel(@RequestParam Integer id) {
-        return orderServices.cancel(id);
+    public <T> ResponseEntity<T> cancel(@RequestParam Integer id) {
+        try {
+            String result = orderServices.cancel(id);
+            return (ResponseEntity<T>) new ResponseEntity<>(result, HttpStatus.OK);
+        }catch (Exception e){
+            return (ResponseEntity<T>) new ResponseEntity<>("Cancellation failed!" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     //method to get all orders
