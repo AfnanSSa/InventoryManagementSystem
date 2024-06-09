@@ -5,6 +5,8 @@ import com.TRA.tra24Springboot.Models.PaymentType;
 import com.TRA.tra24Springboot.Models.Supplier;
 import com.TRA.tra24Springboot.Services.SupplierServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +25,13 @@ public class SupplierController {
 
     //method to update the supplier
     @PutMapping("update")
-    public String update(@RequestParam Integer id, @RequestParam Integer quantity) {
-        return supplierServices.updateMinimumOrderQuantity(id, quantity);
+    public <T> ResponseEntity<T> update(@RequestParam Integer id, @RequestParam Integer quantity) {
+        try {
+            String result = supplierServices.updateMinimumOrderQuantity(id, quantity);
+            return (ResponseEntity<T>) new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e){
+            return (ResponseEntity<T>) new ResponseEntity<>("Updating failed!", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
