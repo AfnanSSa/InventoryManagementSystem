@@ -30,15 +30,20 @@ public class SupplierController {
             String result = supplierServices.updateMinimumOrderQuantity(id, quantity);
             return (ResponseEntity<T>) new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e){
-            return (ResponseEntity<T>) new ResponseEntity<>("Updating failed!", HttpStatus.INTERNAL_SERVER_ERROR);
+            return (ResponseEntity<T>) new ResponseEntity<>("Updating failed!"+ e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
 
     //method to remove supplier
     @PostMapping("remove")
-    public String remove(@RequestParam Integer id) {
-        return supplierServices.remove(id);
+    public <T> ResponseEntity<T> remove(@RequestParam Integer id) {
+        try {
+            String result = supplierServices.remove(id);
+            return (ResponseEntity<T>) new ResponseEntity<>(result, HttpStatus.OK);
+        }catch (Exception e){
+            return (ResponseEntity<T>) new ResponseEntity<>("Removing Failed!" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     //method to get suppliers
