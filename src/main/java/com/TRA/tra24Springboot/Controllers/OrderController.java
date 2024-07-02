@@ -6,10 +6,11 @@ import com.TRA.tra24Springboot.Models.OrderStatus;
 import com.TRA.tra24Springboot.Models.PaymentStatus;
 import com.TRA.tra24Springboot.Models.PaymentType;
 import com.TRA.tra24Springboot.Services.OrderServices;
-import org.aspectj.weaver.ast.Or;
+import com.TRA.tra24Springboot.Services.SlackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +20,13 @@ import java.util.List;
 public class OrderController {
     @Autowired
     OrderServices orderServices;
+    @Autowired
+    SlackService slackService;
 
     @PostMapping("create")
     //method to create the order
     public Order create(Order order) {
+        slackService.sendMessage("afnan", "New order has been added!");
         return orderServices.create(order);
     }
 
