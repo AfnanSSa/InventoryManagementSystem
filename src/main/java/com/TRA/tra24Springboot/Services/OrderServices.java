@@ -5,10 +5,8 @@ import com.TRA.tra24Springboot.Models.*;
 import com.TRA.tra24Springboot.Repositories.OrderRepository;
 import com.TRA.tra24Springboot.Repositories.ProductDetailsRepository;
 import com.TRA.tra24Springboot.Repositories.ProductRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -27,7 +25,6 @@ public class OrderServices {
     OrderDTO orderDTO;
 
     //method to create the order
-    @PostMapping("create")
     public Order create(Order order){
 
         Product product = new Product();
@@ -63,7 +60,6 @@ public class OrderServices {
     }
 
     //method to update order
-    @PutMapping("update")
     public String update(Integer id){
         Order order = orderRepository.getById(id);
         order.setOrderDate(new Date());
