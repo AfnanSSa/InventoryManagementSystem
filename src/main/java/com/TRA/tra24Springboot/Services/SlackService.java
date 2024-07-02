@@ -17,8 +17,6 @@ public class SlackService {
     public void sendMessage( String channel, String message) {
         Slack slack = Slack.getInstance();
 
-        channel = "#afnan";
-        message = "This message is sent from Java!";
         ChatPostMessageRequest request = ChatPostMessageRequest.builder()
                 .channel(channel)
                 .text(message)
