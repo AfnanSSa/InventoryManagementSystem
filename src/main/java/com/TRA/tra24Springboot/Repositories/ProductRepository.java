@@ -47,6 +47,7 @@ public interface ProductRepository extends JpaRepository <Product, Integer>{
     @Query("SELECT p FROM Product p WHERE p.isActive =:isActive")
     List<Product> getProductByAvailability(@Param("isActive") Boolean isActive);
 
-
+    @Query("SELECT p FROM Product p WHERE p.quantity =:quantity")
+    List<Product> getProductByQuantity(@Param("quantity") Integer quantity);
 
 }
