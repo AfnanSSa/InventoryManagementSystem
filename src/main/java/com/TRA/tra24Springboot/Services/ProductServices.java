@@ -8,6 +8,7 @@ import com.TRA.tra24Springboot.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -45,7 +46,7 @@ public class ProductServices {
     public String delete(Integer id) throws Exception {
         try {
             Product product = productRepository.getById(id);
-            if (product == null){
+            if (product == null) {
                 throw new Exception("Product with ID: " + id + " is not found");
             }
             product.setIsActive(Boolean.FALSE);
@@ -53,7 +54,7 @@ public class ProductServices {
             productRepository.save(product);
             return "Product Deleted Successfully";
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("Failed to delete product: " + e.getMessage());
         }
     }
@@ -67,43 +68,59 @@ public class ProductServices {
         return "Updated Successfully";
     }
 
-   public List<ProductDTO> getProduct() {
+    public List<ProductDTO> getProduct() {
         List<Product> products = productRepository.findAll();
         return productDTO.convertToDTOList(products);
     }
 
-    public Product getProductByID(Integer productID){
+    public Product getProductByID(Integer productID) {
         return productRepository.getProductByID(productID);
     }
 
-   public List<Product> getProductByName(String productName){
+    public List<Product> getProductByName(String productName) {
         return productRepository.getProductByName(productName);
-   }
-    public List<Product> getProductByCountryOfOrigin(String country){
+    }
+
+    public List<Product> getProductByCountryOfOrigin(String country) {
         return productRepository.getProductByCountryOfOrigin(country);
     }
 
-    public List<Product> getProductBySize(String size){
+    public List<Product> getProductBySize(String size) {
         return productRepository.getProductBySize(size);
     }
 
-    public List<Product> getProductByColor(String color){
+    public List<Product> getProductByColor(String color) {
         return productRepository.getProductByColor(color);
     }
 
-    public Product getProductBySKU(UUID sku){
+    public Product getProductBySKU(UUID sku) {
         return productRepository.getProductBySKU(sku);
     }
 
-    public List<Product> getProductByCategory(String category){
+    public List<Product> getProductByCategory(String category) {
         return productRepository.getProductByCategory(category);
     }
 
-    public List<Product> getProductByPrice (Double price){
+    public List<Product> getProductByPrice(Double price) {
         return productRepository.getProductByPrice(price);
     }
 
-    public List<Product> getProductByAvailability(Boolean isActive){
+    public List<Product> getProductByAvailability(Boolean isActive) {
         return productRepository.getProductByAvailability(isActive);
+    }
+
+    public List<Product> getProductByQuantity(Integer quantity) {
+        return productRepository.getProductByQuantity(quantity);
+    }
+
+    public List<Product> getLowStockProducts() {
+        List<Product> products = productRepository.findAll();
+        List<Product> lowStockProducts = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getQuantity() < 5) {
+                lowStockProducts.add(product);
+            }
+        }
+        return lowStockProducts;
     }
 }
