@@ -14,5 +14,6 @@ public class Invoice extends BaseEntity{
     List<Product> products;
     Double totalAmount;
     Date dueDate;
+    Date paymentDate;
 
 }
