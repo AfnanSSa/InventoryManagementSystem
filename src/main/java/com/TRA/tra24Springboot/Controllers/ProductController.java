@@ -103,7 +103,7 @@ public class ProductController {
         return productServices.getProductByQuantity(quantity);
     }
 
-    @Scheduled(cron = "0 9/6 * * *")
+    @Scheduled(cron = "0 0 9/6 * * *")
     @GetMapping("lowStock")
     public List<Product> lowStockCheck() {
         List<Product> lowStockProducts = productServices.getLowStockProducts();
