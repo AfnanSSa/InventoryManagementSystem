@@ -18,9 +18,9 @@ public class InvoiceServices {
     ProductServices productServices;
 
     public Invoice createInvoice(Invoice invoice) {
-        invoice.setProducts(Arrays.asList(productServices.getProductByID(1102)));
+        invoice.setProducts(Arrays.asList(productServices.getProductByID(952)));
         invoice.setCreatedDate(new Date());
-        invoice.setTotalAmount(10.0);
+        invoice.setTotalAmount(350.0);
 
         Date dueDate = DateHelperUtils.addDays(invoice.getCreatedDate(), 7);
         invoice.setDueDate(dueDate);
@@ -45,6 +45,12 @@ public class InvoiceServices {
         Date today = new Date();
         Date dueDate = DateHelperUtils.addDays(today, days);
         return invoiceRepository.getInvoicesByDueDateBetween(today, dueDate);
+    }
+
+    //method to get overdue invoices
+    public List<Invoice> getOverDueInvoices(){
+        Date today = new Date();
+        return invoiceRepository.getOverdueInvoices(today);
     }
 
 }
