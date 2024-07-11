@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,6 +26,8 @@ class ProductRepositoryTest {
     private ProductRepository productRepository;
     @Autowired
     private ProductDetailsRepository productDetailsRepository;
+
+    private UUID sku;
     @BeforeEach
     void setupProduct(){
         ProductDetails productDetails = ProductDetails.builder()
@@ -37,10 +40,13 @@ class ProductRepositoryTest {
 
         productDetailsRepository.save(productDetails);
 
+        sku = UUID.randomUUID();
+
         Product product = Product.builder()
                 .productDetails(productDetails)
                 .category("Electronics")
                 .quantity(50)
+                .sku(sku)
                 .build();
 
         productRepository.save(product);
@@ -81,11 +87,15 @@ class ProductRepositoryTest {
         assertThat(productsOfColor.get(0).getProductDetails().getColor()).isEqualTo("Black");
     }
 
-    /*@Test
+    @Test
     void getProductBySKU() {
+        Product product = productRepository.getProductBySKU(sku);
+        assertThat(product).isNotNull();
+        assertThat(product.getSku()).isEqualTo(sku);
+        assertThat(product.getProductDetails().getName()).isEqualTo("Screen");
     }
 
-    @Test
+    /*@Test
     void getProductByCategory() {
     }
 
