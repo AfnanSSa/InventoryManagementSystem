@@ -9,12 +9,11 @@ import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 @DataJpaTest
@@ -55,7 +54,7 @@ class OrderRepositoryTest {
 
         date = new Date();
         Order order = Order.builder()
-                .productsOrdered((List<Product>) product)
+                .productsOrdered(List.of(product))
                 .categoryName("Electronics")
                 .paymentType(PaymentType.BANK_TRANSFER)
                 .status(OrderStatus.COMPLETED)
@@ -63,18 +62,19 @@ class OrderRepositoryTest {
                 .orderDate(new Date())
                 .dueDate(DateHelperUtils.addDays(date, 7))
                 .build();
+        orderRepository.save(order);
     }
 
-
-    @Test
-    void getOrderById() {
-    }
 
     @Test
     void getOrderByCategoryName() {
+        List<Order> orderCategory = orderRepository.getOrderByCategoryName("Electronics");
+        assertThat(orderCategory).isNotNull();
+        assertThat(orderCategory.size()).isEqualTo(1);
+        assertThat(orderCategory.get(0).getCategoryName()).isEqualTo("Electronics");
     }
 
-    @Test
+    /*@Test
     void getOrderByStatus() {
     }
 
@@ -84,5 +84,5 @@ class OrderRepositoryTest {
 
     @Test
     void getOrderByPaymentType() {
-    }
+    }*/
 }
