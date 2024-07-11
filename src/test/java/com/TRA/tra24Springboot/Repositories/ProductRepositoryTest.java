@@ -95,11 +95,15 @@ class ProductRepositoryTest {
         assertThat(product.getProductDetails().getName()).isEqualTo("Screen");
     }
 
-    /*@Test
+    @Test
     void getProductByCategory() {
+        List<Product> productsOfCategory = productRepository.getProductByCategory("Electronics");
+        assertThat(productsOfCategory).isNotNull();
+        assertThat(productsOfCategory.size()).isEqualTo(1);
+        assertThat(productsOfCategory.get(0).getCategory()).isEqualTo("Electronics");
     }
 
-    @Test
+   /* @Test
     void getProductByPrice() {
     }
 
