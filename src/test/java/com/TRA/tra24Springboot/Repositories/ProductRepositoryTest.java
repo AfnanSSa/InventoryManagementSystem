@@ -73,11 +73,15 @@ class ProductRepositoryTest {
         assertThat(productsOfSize.get(0).getProductDetails().getSize()).isEqualTo("24 inches");
     }
 
-   /* @Test
+    @Test
     void getProductByColor() {
+        List<Product> productsOfColor = productRepository.getProductByColor("Black");
+        assertThat(productsOfColor).isNotNull();
+        assertThat(productsOfColor.size()).isEqualTo(1);
+        assertThat(productsOfColor.get(0).getProductDetails().getColor()).isEqualTo("Black");
     }
 
-    @Test
+    /*@Test
     void getProductBySKU() {
     }
 
