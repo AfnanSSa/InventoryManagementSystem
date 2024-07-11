@@ -65,11 +65,15 @@ class ProductRepositoryTest {
         assertThat(productsFromCountry.get(0).getProductDetails().getCountryOfOrigin()).isEqualTo("Japan");
     }
 
-   /* @Test
+    @Test
     void getProductBySize() {
+        List<Product> productsOfSize = productRepository.getProductBySize("24 inches");
+        assertThat(productsOfSize).isNotNull();
+        assertThat(productsOfSize.size()).isEqualTo(1);
+        assertThat(productsOfSize.get(0).getProductDetails().getSize()).isEqualTo("24 inches");
     }
 
-    @Test
+   /* @Test
     void getProductByColor() {
     }
 
