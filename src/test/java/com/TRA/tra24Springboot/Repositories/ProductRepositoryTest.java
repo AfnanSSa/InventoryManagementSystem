@@ -59,6 +59,10 @@ class ProductRepositoryTest {
 
     @Test
     void getProductByCountryOfOrigin() {
+        List<Product> productsFromCountry = productRepository.getProductByCountryOfOrigin("Japan");
+        assertThat(productsFromCountry).isNotNull();
+        assertThat(productsFromCountry.size()).isEqualTo(1);
+        assertThat(productsFromCountry.get(0).getProductDetails().getCountryOfOrigin()).isEqualTo("Japan");
     }
 
    /* @Test
