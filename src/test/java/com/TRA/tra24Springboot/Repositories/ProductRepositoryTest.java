@@ -51,10 +51,6 @@ class ProductRepositoryTest {
         product.setIsActive(Boolean.TRUE);
         productRepository.save(product);
     }
-/*    @Test
-    void testGetProductByID() {
-        Product product = productRepository.getProductByID();
-    }*/
 
     @Test
     void getProductByName() {
