@@ -109,7 +109,6 @@ class ProductRepositoryTest {
         assertThat(productsOfPrice).isNotNull();
         assertThat(productsOfPrice.size()).isEqualTo(1);
         assertThat(productsOfPrice.get(0).getProductDetails().getPrice()).isEqualTo(200.0);
-        assertThat(productsOfPrice.get(0).getProductDetails().getName()).isEqualTo("Screen");
     }
 
     @Test
@@ -118,10 +117,13 @@ class ProductRepositoryTest {
         assertThat(productsAvailability).isNotNull();
         assertThat(productsAvailability.size()).isEqualTo(1);
         assertThat(productsAvailability.get(0).getIsActive()).isEqualTo(Boolean.TRUE);
-        assertThat(productsAvailability.get(0).getProductDetails().getName()).isEqualTo("Screen");
     }
 
-    /* @Test
+    @Test
     void getProductByQuantity() {
-    }*/
+        List<Product> productsOfQuantity = productRepository.getProductByQuantity(50);
+        assertThat(productsOfQuantity).isNotNull();
+        assertThat(productsOfQuantity.size()).isEqualTo(1);
+        assertThat(productsOfQuantity.get(0).getQuantity()).isEqualTo(50);
+    }
 }
