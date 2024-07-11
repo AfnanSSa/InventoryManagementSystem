@@ -48,7 +48,7 @@ class ProductRepositoryTest {
                 .quantity(50)
                 .sku(sku)
                 .build();
-
+        product.setIsActive(Boolean.TRUE);
         productRepository.save(product);
     }
 /*    @Test
@@ -103,15 +103,25 @@ class ProductRepositoryTest {
         assertThat(productsOfCategory.get(0).getCategory()).isEqualTo("Electronics");
     }
 
-   /* @Test
+   @Test
     void getProductByPrice() {
+        List<Product> productsOfPrice = productRepository.getProductByPrice(200.0);
+        assertThat(productsOfPrice).isNotNull();
+        assertThat(productsOfPrice.size()).isEqualTo(1);
+        assertThat(productsOfPrice.get(0).getProductDetails().getPrice()).isEqualTo(200.0);
+        assertThat(productsOfPrice.get(0).getProductDetails().getName()).isEqualTo("Screen");
     }
 
     @Test
     void getProductByAvailability() {
+        List<Product> productsAvailability = productRepository.getProductByAvailability(Boolean.TRUE);
+        assertThat(productsAvailability).isNotNull();
+        assertThat(productsAvailability.size()).isEqualTo(1);
+        assertThat(productsAvailability.get(0).getIsActive()).isEqualTo(Boolean.TRUE);
+        assertThat(productsAvailability.get(0).getProductDetails().getName()).isEqualTo("Screen");
     }
 
-    @Test
+    /* @Test
     void getProductByQuantity() {
     }*/
 }
