@@ -22,11 +22,11 @@ import java.util.UUID;
 class OrderRepositoryTest {
 
     @Autowired
-    OrderRepository orderRepository;
+    private OrderRepository orderRepository;
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
     @Autowired
-    ProductDetailsRepository productDetailsRepository;
+    private ProductDetailsRepository productDetailsRepository;
     private UUID sku;
     private Date date;
 
@@ -74,15 +74,27 @@ class OrderRepositoryTest {
         assertThat(orderCategory.get(0).getCategoryName()).isEqualTo("Electronics");
     }
 
-    /*@Test
+    @Test
     void getOrderByStatus() {
+        List<Order> orderStatus = orderRepository.getOrderByStatus(OrderStatus.COMPLETED);
+        assertThat(orderStatus).isNotNull();
+        assertThat(orderStatus.size()).isEqualTo(1);
+        assertThat(orderStatus.get(0).getStatus()).isEqualTo(OrderStatus.COMPLETED);
     }
 
     @Test
     void getOrderByPaymentStatus() {
+        List<Order> orderPaymentStatus = orderRepository.getOrderByPaymentStatus(PaymentStatus.PAID);
+        assertThat(orderPaymentStatus).isNotNull();
+        assertThat(orderPaymentStatus.size()).isEqualTo(1);
+        assertThat(orderPaymentStatus.get(0).getPaymentStatus()).isEqualTo(PaymentStatus.PAID);
     }
 
     @Test
     void getOrderByPaymentType() {
-    }*/
+        List<Order> orderPaymentType = orderRepository.getOrderByPaymentType(PaymentType.BANK_TRANSFER);
+        assertThat(orderPaymentType).isNotNull();
+        assertThat(orderPaymentType.size()).isEqualTo(1);
+        assertThat(orderPaymentType.get(0).getPaymentType()).isEqualTo(PaymentType.BANK_TRANSFER);
+    }
 }
