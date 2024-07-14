@@ -92,9 +92,6 @@ class SupplierRepositoryTest {
         supplierRepository.save(supplier);
     }
 
-/*    @Test
-    void getSupplierById() {
-    }*/
 
     @Test
     void getSupplierByCompanyName() {
@@ -104,11 +101,15 @@ class SupplierRepositoryTest {
         assertThat(supplierName.get(0).getCompanyName()).isEqualTo("Sharp Corporation");
     }
 
-    /*@Test
+    @Test
     void getSupplierByCountry() {
+        List<Supplier> supplierCountry = supplierRepository.getSupplierByCountry("Japan");
+        assertThat(supplierCountry).isNotNull();
+        assertThat(supplierCountry.size()).isEqualTo(1);
+        assertThat(supplierCountry.get(0).getCountry()).isEqualTo("Japan");
     }
 
-    @Test
+    /*@Test
     void getSupplierByMinimumOrderQty() {
     }
 
