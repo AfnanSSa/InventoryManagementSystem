@@ -109,11 +109,15 @@ class SupplierRepositoryTest {
         assertThat(supplierCountry.get(0).getCountry()).isEqualTo("Japan");
     }
 
-    /*@Test
+    @Test
     void getSupplierByMinimumOrderQty() {
+        List<Supplier> supplierMinimumOrder = supplierRepository.getSupplierByMinimumOrderQty(1);
+        assertThat(supplierMinimumOrder).isNotNull();
+        assertThat(supplierMinimumOrder.size()).isEqualTo(1);
+        assertThat(supplierMinimumOrder.get(0).getMinimumOrderQuantity()).isEqualTo(1);
     }
 
-    @Test
+    /*@Test
     void getSupplierByShippingMethod() {
     }
 
