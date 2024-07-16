@@ -74,11 +74,15 @@ class InvoiceRepositoryTest {
         assertThat(invoicesCreatedDates.get(0).getCreatedDate()).isEqualTo(date);
     }
 
- /*   @Test
+   @Test
     void getInvoiceByDueDate() {
+        List<Invoice> invoicesDueDates = invoiceRepository.getInvoiceByDueDate(DateHelperUtils.addDays(date, 15));
+        assertThat(invoicesDueDates).isNotNull();
+        assertThat(invoicesDueDates.size()).isEqualTo(1);
+        assertThat(invoicesDueDates.get(0).getDueDate()).isEqualTo(DateHelperUtils.addDays(date, 15));
     }
 
-    @Test
+ /*    @Test
     void getInvoicesByDueDateBetween() {
     }
 
