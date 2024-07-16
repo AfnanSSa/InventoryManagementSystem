@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 @DataJpaTest
 @ActiveProfiles("test")
@@ -31,6 +32,7 @@ class InvoiceRepositoryTest {
 
     private UUID sku;
     private Date date = new Date();
+    private Date dueDate = DateHelperUtils.addDays(date, 15);
 
     @BeforeEach
     void setupInvoice() {
@@ -59,7 +61,7 @@ class InvoiceRepositoryTest {
         Invoice invoice = Invoice.builder()
                 .products(List.of(product))
                 .totalAmount(203.3)
-                .dueDate(DateHelperUtils.addDays(date, 15))
+                .dueDate(dueDate)
                 .paymentDate(date)
                 .build();
         invoice.setCreatedDate(date);
@@ -76,17 +78,20 @@ class InvoiceRepositoryTest {
 
    @Test
     void getInvoiceByDueDate() {
-        List<Invoice> invoicesDueDates = invoiceRepository.getInvoiceByDueDate(DateHelperUtils.addDays(date, 15));
+        List<Invoice> invoicesDueDates = invoiceRepository.getInvoiceByDueDate(dueDate);
         assertThat(invoicesDueDates).isNotNull();
         assertThat(invoicesDueDates.size()).isEqualTo(1);
-        assertThat(invoicesDueDates.get(0).getDueDate()).isEqualTo(DateHelperUtils.addDays(date, 15));
-    }
-
- /*    @Test
-    void getInvoicesByDueDateBetween() {
+        assertThat(invoicesDueDates.get(0).getDueDate()).isEqualTo(dueDate);
     }
 
     @Test
+    void getInvoicesByDueDateBetween() {
+        List<Invoice> invoicesDueDateBetween = invoiceRepository.getInvoicesByDueDateBetween(date, dueDate);
+        assertThat(invoicesDueDateBetween).isNotNull();
+        assertThat(invoicesDueDateBetween.size()).isEqualTo(1);
+    }
+
+   /*  @Test
     void getOverdueInvoices() {
     }
 
