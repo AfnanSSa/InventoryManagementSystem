@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -32,8 +31,9 @@ class InvoiceRepositoryTest {
 
     private UUID sku;
     private Date date = new Date();
+
     @BeforeEach
-    void setupInvoice(){
+    void setupInvoice() {
 
         ProductDetails productDetails = ProductDetails.builder()
                 .name("Screen")
@@ -66,12 +66,15 @@ class InvoiceRepositoryTest {
         invoiceRepository.save(invoice);
     }
 
-/*    @Test
+    @Test
     void getInvoiceByCreatedDate() {
-
+        List<Invoice> invoicesCreatedDates = invoiceRepository.getInvoiceByCreatedDate(date);
+        assertThat(invoicesCreatedDates).isNotNull();
+        assertThat(invoicesCreatedDates.size()).isEqualTo(1);
+        assertThat(invoicesCreatedDates.get(0).getCreatedDate()).isEqualTo(date);
     }
 
-    @Test
+ /*   @Test
     void getInvoiceByDueDate() {
     }
 
