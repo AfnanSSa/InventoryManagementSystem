@@ -125,7 +125,11 @@ class SupplierRepositoryTest {
         assertThat(shippingMethod.get(0).getShippingMethods()).isEqualTo("Freight Shipping");
     }
 
-    /*@Test
+    @Test
     void getSupplierByPaymentMethod() {
-    }*/
+        List<Supplier> paymentMethod = supplierRepository.getSupplierByPaymentMethod(PaymentType.BANK_TRANSFER);
+        assertThat(paymentMethod).isNotNull();
+        assertThat(paymentMethod.size()).isEqualTo(1);
+        assertThat(paymentMethod.get(0).getPaymentMethods()).isEqualTo(PaymentType.BANK_TRANSFER);
+    }
 }
