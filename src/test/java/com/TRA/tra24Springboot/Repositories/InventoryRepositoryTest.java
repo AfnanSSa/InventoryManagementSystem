@@ -116,14 +116,17 @@ class InventoryRepositoryTest {
 
     @Test
     void getInventoryByLocation() {
-        List<Inventory> inventoryLocation = inventoryRepository.getInventoryByLocation("Muscat");
-        assertThat(inventoryLocation).isNotNull();
-        assertThat(inventoryLocation.size()).isEqualTo(1);
-        assertThat(inventoryLocation.get(0).getLocation()).isEqualTo("Muscat");
+        List<Inventory> inventoryLocations = inventoryRepository.getInventoryByLocation("Muscat");
+        assertThat(inventoryLocations).isNotNull();
+        assertThat(inventoryLocations.size()).isEqualTo(1);
+        assertThat(inventoryLocations.get(0).getLocation()).isEqualTo("Muscat");
     }
 
-    /*
     @Test
     void getInventoryByAdminName() {
-    }*/
+        List<Inventory> inventoryAdmins = inventoryRepository.getInventoryByAdminName("Afnan");
+        assertThat(inventoryAdmins).isNotNull();
+        assertThat(inventoryAdmins.size()).isEqualTo(1);
+        assertThat(inventoryAdmins.get(0).getAdmin()).isEqualTo("Afnan");
+    }
 }
