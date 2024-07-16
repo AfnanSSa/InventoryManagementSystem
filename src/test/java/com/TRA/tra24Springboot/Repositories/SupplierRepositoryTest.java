@@ -117,11 +117,15 @@ class SupplierRepositoryTest {
         assertThat(supplierMinimumOrder.get(0).getMinimumOrderQuantity()).isEqualTo(1);
     }
 
-    /*@Test
+    @Test
     void getSupplierByShippingMethod() {
+        List<Supplier> shippingMethod = supplierRepository.getSupplierByShippingMethod("Freight Shipping");
+        assertThat(shippingMethod).isNotNull();
+        assertThat(shippingMethod.size()).isEqualTo(1);
+        assertThat(shippingMethod.get(0).getShippingMethods()).isEqualTo("Freight Shipping");
     }
 
-    @Test
+    /*@Test
     void getSupplierByPaymentMethod() {
     }*/
 }
