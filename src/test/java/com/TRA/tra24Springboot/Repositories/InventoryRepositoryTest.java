@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -113,10 +114,15 @@ class InventoryRepositoryTest {
         assertThat(inventoryAvailability.get(0).getIsActive()).isEqualTo(Boolean.TRUE);
     }
 
-/*    @Test
+    @Test
     void getInventoryByLocation() {
+        List<Inventory> inventoryLocation = inventoryRepository.getInventoryByLocation("Muscat");
+        assertThat(inventoryLocation).isNotNull();
+        assertThat(inventoryLocation.size()).isEqualTo(1);
+        assertThat(inventoryLocation.get(0).getLocation()).isEqualTo("Muscat");
     }
 
+    /*
     @Test
     void getInventoryByAdminName() {
     }*/
