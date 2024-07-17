@@ -32,6 +32,7 @@ class InvoiceRepositoryTest {
     private UUID sku;
     private Date date = new Date();
     private Date dueDate = DateHelperUtils.addDays(date, 1);
+    Integer invoiceId;
 
     @BeforeEach
     void setupInvoice() {
@@ -64,9 +65,15 @@ class InvoiceRepositoryTest {
                 .paymentDate(date)
                 .build();
         invoice.setCreatedDate(date);
-        invoiceRepository.save(invoice);
+        invoiceId = invoiceRepository.save(invoice).getId();
     }
 
+    @Test
+    void getInvoiceById(){
+        Invoice invoiceById = invoiceRepository.findById(invoiceId).orElse(null);
+        assertThat(invoiceById).isNotNull();
+        assertThat(invoiceById.getId()).isEqualTo(invoiceId);
+    }
     @Test
     void getInvoiceByCreatedDate() {
         List<Invoice> invoicesCreatedDates = invoiceRepository.getInvoiceByCreatedDate(date);
