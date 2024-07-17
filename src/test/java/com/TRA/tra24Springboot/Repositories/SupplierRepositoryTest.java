@@ -35,6 +35,7 @@ class SupplierRepositoryTest {
     private ContactDetailsRepository contactDetailsRepository;
     private UUID sku;
     private Date date;
+    Integer supplierId;
     @BeforeEach
     void setSupplier(){
         ProductDetails productDetails = ProductDetails.builder()
@@ -89,9 +90,15 @@ class SupplierRepositoryTest {
                 .minimumOrderQuantity(1)
                 .nextDeliveryTime(DateHelperUtils.addDays(date, 20))
                 .build();
-        supplierRepository.save(supplier);
+        supplierId = supplierRepository.save(supplier).getId();
     }
 
+    @Test
+    void getSupplierById(){
+        Supplier supplierById = supplierRepository.findById(supplierId).orElse(null);
+        assertThat(supplierById).isNotNull();
+        assertThat(supplierById.getId()).isEqualTo(supplierId);
+    }
 
     @Test
     void getSupplierByCompanyName() {
