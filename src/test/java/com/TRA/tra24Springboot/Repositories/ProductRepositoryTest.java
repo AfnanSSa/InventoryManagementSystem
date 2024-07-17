@@ -28,6 +28,7 @@ class ProductRepositoryTest {
     private ProductDetailsRepository productDetailsRepository;
 
     private UUID sku;
+    Integer productId;
     @BeforeEach
     void setupProduct(){
         ProductDetails productDetails = ProductDetails.builder()
@@ -49,9 +50,16 @@ class ProductRepositoryTest {
                 .sku(sku)
                 .build();
         product.setIsActive(Boolean.TRUE);
-        productRepository.save(product);
+        productId = productRepository.save(product).getId();
     }
 
+    @Test
+    void getProductById(){
+        Product productById = productRepository.findById(productId).orElse(null);
+        assertThat(productById).isNotNull();
+        assertThat(productById.getId()).isEqualTo(productId);
+
+    }
     @Test
     void getProductByName() {
         List<Product> product = productRepository.getProductByName("Screen");
