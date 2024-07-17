@@ -29,6 +29,7 @@ class OrderRepositoryTest {
     private ProductDetailsRepository productDetailsRepository;
     private UUID sku;
     private Date date;
+    Integer orderId;
 
     @BeforeEach
     void setupOrder(){
@@ -62,9 +63,15 @@ class OrderRepositoryTest {
                 .orderDate(new Date())
                 .dueDate(DateHelperUtils.addDays(date, 7))
                 .build();
-        orderRepository.save(order);
+        orderId = orderRepository.save(order).getId();
     }
-
+    
+    @Test
+    void getOrderById(){
+        Order orderById = orderRepository.findById(orderId).orElse(null);
+        assertThat(orderById).isNotNull();
+        assertThat(orderById.getId()).isEqualTo(orderId);
+    }
 
     @Test
     void getOrderByCategoryName() {
