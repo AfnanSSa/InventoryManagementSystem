@@ -35,6 +35,7 @@ class InventoryRepositoryTest {
     private ContactDetailsRepository contactDetailsRepository;
     private UUID sku;
     private Date date;
+    Integer inventoryId;
     @BeforeEach
     void setupInventory(){
         ProductDetails productDetails = ProductDetails.builder()
@@ -102,9 +103,15 @@ class InventoryRepositoryTest {
                 .closingHours("9 PM")
                 .build();
         inventory.setIsActive(Boolean.TRUE);
-        inventoryRepository.save(inventory);
+        inventoryId= inventoryRepository.save(inventory).getId();
     }
 
+    @Test
+    void getInventoryById(){
+        Inventory inventoryById = inventoryRepository.findById(inventoryId).orElse(null);
+        assertThat(inventoryById).isNotNull();
+        assertThat(inventoryById.getId()).isEqualTo(inventoryId);
+    }
     @Test
     void getInventoryByAvailability() {
         List<Inventory> inventoryAvailability = inventoryRepository.getInventoryByAvailability(Boolean.TRUE);
