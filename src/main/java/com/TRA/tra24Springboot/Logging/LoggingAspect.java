@@ -14,20 +14,20 @@ public class LoggingAspect {
     public static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
 
-    @Pointcut(value = "execution(* com.tra.school.Controllers.InventoryController.*(..)")
+    @Pointcut(value = "execution(* com.TRA.tra24Springboot.Controllers.InventoryController.*(..)")
     public void pointCutDefinitionSchool(){}
 
-    @Before(value = "pointCutDefinitionSchool")
+    @Before(value = "pointCutDefinitionInventory")
     public void logBefore(ProceedingJoinPoint joinPoint) {
         System.out.println("Before method: " + joinPoint.getSignature().getName());
     }
 
-    @AfterReturning(value = "pointCutDefinitionSchool", returning = "result")
+    @AfterReturning(value = "pointCutDefinitionInventory", returning = "result")
     public void logAfterReturning(ProceedingJoinPoint joinPoint, Object result) {
         System.out.println("After method: " + joinPoint.getSignature().getName() + ", Result: " + result);
     }
 
-    @Around(value = "pointCutDefinitionSchool")
+    @Around(value = "pointCutDefinitionInventory")
     public Object applicationLogger(ProceedingJoinPoint pjp) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         String methodName = pjp.getSignature().getName();
