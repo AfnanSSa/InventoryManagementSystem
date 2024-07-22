@@ -14,7 +14,7 @@ public class LoggingAspect {
     public static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
 
-    @Pointcut(value = "execution(* com.tra.school.Controllers.SchoolController.*(..)")
+    @Pointcut(value = "execution(* com.tra.school.Controllers.InventoryController.*(..)")
     public void pointCutDefinitionSchool(){}
 
     @Before(value = "pointCutDefinitionSchool")
