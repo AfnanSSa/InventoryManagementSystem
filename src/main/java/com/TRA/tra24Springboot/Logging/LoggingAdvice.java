@@ -16,7 +16,7 @@ public class LoggingAdvice {
     public static Logger logger = LoggerFactory.getLogger(LoggingAdvice.class);
 
 
-    @Pointcut(value = "execution(* com.TRA.tra24Springboot.InventoryController.*(..))")
+    @Pointcut(value = "execution(* com.TRA.tra24Springboot.Controllers.InventoryController.*(..))")
     public void pointCutDefinitionSchool() {
     }
 
