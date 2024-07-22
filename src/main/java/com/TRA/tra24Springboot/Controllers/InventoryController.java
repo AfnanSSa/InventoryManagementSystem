@@ -60,4 +60,9 @@ public class  InventoryController {
         return inventoryServices.getInventoryByAdminName(admin);
     }
 
+    @GetMapping("word")
+    public String sayHi(@RequestParam String word){
+        return word;
+    }
+
 }
