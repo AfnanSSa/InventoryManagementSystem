@@ -17,7 +17,7 @@ public class LoggingAdvice {
 
 
     @Pointcut(value = "execution(* com.TRA.tra24Springboot.Controllers.InventoryController.*(..))")
-    public void pointCutDefinitionSchool() {
+    public void pointCutDefinitionInventory() {
     }
 
     @Before(value = "pointCutDefinitionInventory()")
