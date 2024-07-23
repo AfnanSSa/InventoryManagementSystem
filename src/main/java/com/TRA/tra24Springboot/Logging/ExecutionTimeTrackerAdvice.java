@@ -17,7 +17,7 @@ public class ExecutionTimeTrackerAdvice {
         long startTime=System.currentTimeMillis();
         Object obj=pjp.proceed();
         long endTime=System.currentTimeMillis();
-        logger.info("Method name"+pjp.getSignature()+" time taken to execute : "+(endTime-startTime));
+        logger.info("\nMethod name: " + pjp.getSignature().getName() + "() \ntime taken to execute : " + (endTime-startTime) + " ms.");
         return obj;
     }
 
