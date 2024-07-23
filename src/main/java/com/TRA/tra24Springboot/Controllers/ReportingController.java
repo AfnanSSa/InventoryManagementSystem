@@ -1,4 +1,5 @@
 package com.TRA.tra24Springboot.Controllers;
+import com.TRA.tra24Springboot.Logging.TrackExecutionTime;
 import com.TRA.tra24Springboot.Models.Inventory;
 import com.TRA.tra24Springboot.Models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class ReportingController {
 
     //reporting all Inventory
     @GetMapping("report")
+    @TrackExecutionTime
     public String reportInventory() {
 
         StringBuilder stringBuilder = new StringBuilder();
