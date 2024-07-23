@@ -24,13 +24,11 @@ public class ProductController {
 
 
     @PostMapping("add")
-    @TrackExecutionTime
     public Product addProduct(Product product) {
         return productServices.add(product);
     }
 
     @PostMapping("delete")
-    @TrackExecutionTime
     public <T> ResponseEntity<T> delete(@RequestParam Integer id) throws Exception {
         try {
             String result = productServices.delete(id);
@@ -41,7 +39,6 @@ public class ProductController {
     }
 
     @PutMapping("update")
-    @TrackExecutionTime
     public <T> ResponseEntity<T> updateProduct(@RequestParam Integer id, @RequestParam Integer quantity) {
         try {
             String result = productServices.updateProductQuantity(id, quantity);
@@ -52,75 +49,63 @@ public class ProductController {
     }
 
     @GetMapping("get")
-    @TrackExecutionTime
     public <T> ResponseEntity<T> getProducts() {
 
         return new ResponseEntity(productServices.getProduct(), HttpStatus.OK);
     }
 
     @GetMapping("getById")
-    @TrackExecutionTime
     public Product getProductByID(@RequestParam Integer productID) {
         return productServices.getProductByID(productID);
     }
 
     @GetMapping("getByName")
-    @TrackExecutionTime
     public List<Product> getProductByName(@RequestParam String productName) {
         return productServices.getProductByName(productName);
     }
 
     @GetMapping("getByCountry")
-    @TrackExecutionTime
     public List<Product> getProductByCountryOfOrigin(@RequestParam String country) {
         return productServices.getProductByCountryOfOrigin(country);
     }
 
     @GetMapping("getBySize")
-    @TrackExecutionTime
     public List<Product> getProductBySize(@RequestParam String size) {
         return productServices.getProductBySize(size);
     }
 
     @GetMapping("getByColor")
-    @TrackExecutionTime
     public List<Product> getProductByColor(@RequestParam String color) {
         return productServices.getProductByColor(color);
     }
 
     @GetMapping("getBySKU")
-    @TrackExecutionTime
     public Product getProductByID(@RequestParam UUID sku) {
         return productServices.getProductBySKU(sku);
     }
 
     @GetMapping("getByCategory")
-    @TrackExecutionTime
     public List<Product> getProductByCategory(@RequestParam String category) {
         return productServices.getProductByCategory(category);
     }
 
     @GetMapping("getByPrice")
-    @TrackExecutionTime
     public List<Product> getProductByPrice(@RequestParam Double price) {
         return productServices.getProductByPrice(price);
     }
 
     @GetMapping("getByAvailability")
-    @TrackExecutionTime
     public List<Product> getProductByAvailability(@RequestParam Boolean isActive) {
         return productServices.getProductByAvailability(isActive);
     }
 
     @GetMapping("getByQuantity")
-    @TrackExecutionTime
     public List<Product> getProductBuQuantity(@RequestParam Integer quantity) {
         return productServices.getProductByQuantity(quantity);
     }
 
     @Scheduled(cron = "0 0 9/6 * * *")
     @GetMapping("lowStock")
-    @TrackExecutionTime
     public List<Product> lowStockCheck() {
         List<Product> lowStockProducts = productServices.getLowStockProducts();
         if (!lowStockProducts.isEmpty()) {

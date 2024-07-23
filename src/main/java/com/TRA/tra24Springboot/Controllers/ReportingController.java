@@ -18,7 +18,6 @@ public class ReportingController {
 
     //reporting all Inventory
     @GetMapping("report")
-    @TrackExecutionTime
     public String reportInventory() {
 
         StringBuilder stringBuilder = new StringBuilder();

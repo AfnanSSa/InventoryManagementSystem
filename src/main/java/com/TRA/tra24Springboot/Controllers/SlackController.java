@@ -13,7 +13,6 @@ public class SlackController {
     @Autowired
     SlackService slackService;
     @GetMapping("messages")
-    @TrackExecutionTime
     public void sendMessage(){
         slackService.sendMessage("", "");
     }

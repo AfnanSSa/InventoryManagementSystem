@@ -18,7 +18,6 @@ public class  InventoryController {
 
     //method for receiving new stock
     @PostMapping("receive")
-    @TrackExecutionTime
     public Inventory receiveNewStock(Inventory inventory){
         return inventoryServices.receiveNewStock(inventory);
     }
@@ -32,38 +31,32 @@ public class  InventoryController {
 
     //method of write-offs
     @PutMapping("write")
-    @TrackExecutionTime
     public Inventory writeOff(@RequestParam Integer id){
         return inventoryServices.writeOff(id);
     }
 
     @GetMapping("get")
-    @TrackExecutionTime
     //method to get the inventory
     public List<InventoryDTO> get(){
         return inventoryServices.getInventory();
     }
 
     @GetMapping("getById")
-    @TrackExecutionTime
     public Inventory getInventoryById(@RequestParam Integer inventoryID){
         return inventoryServices.getInventoryById(inventoryID);
     }
 
     @GetMapping("getByAvailability")
-    @TrackExecutionTime
     public List<Inventory> getInventoryByAvailability(@RequestParam Boolean isActive){
         return inventoryServices.getInventoryByAvailability(isActive);
     }
 
     @GetMapping("getByLocation")
-    @TrackExecutionTime
     public List<Inventory> getInventoryByLocation(@RequestParam String location){
         return inventoryServices.getInventoryByLocation(location);
     }
 
     @GetMapping("getByAdmin")
-    @TrackExecutionTime
     public List<Inventory> getInventoryByAdminName(@RequestParam String admin){
         return inventoryServices.getInventoryByAdminName(admin);
     }

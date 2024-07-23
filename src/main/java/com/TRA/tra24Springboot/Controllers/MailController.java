@@ -21,7 +21,6 @@ public class MailController {
 
 
     @GetMapping("/sendWithAttachment")
-    @TrackExecutionTime
     public String sendMailWithAttachment() {
 
         return mailingService.sendMailWithAttachment();
