@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class LoggingAdvice {
+public class ControllersLoggingAdvice {
 
-    public static Logger logger = LoggerFactory.getLogger(LoggingAdvice.class);
+    public static Logger logger = LoggerFactory.getLogger(ControllersLoggingAdvice.class);
 
 
     @Pointcut(value = "execution(* com.TRA.tra24Springboot.Controllers.*.*(..))")
