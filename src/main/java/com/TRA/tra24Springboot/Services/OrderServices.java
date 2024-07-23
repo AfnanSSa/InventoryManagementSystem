@@ -1,6 +1,7 @@
 package com.TRA.tra24Springboot.Services;
 
 import com.TRA.tra24Springboot.DTO.OrderDTO;
+import com.TRA.tra24Springboot.Logging.TrackExecutionTime;
 import com.TRA.tra24Springboot.Models.*;
 import com.TRA.tra24Springboot.Repositories.OrderRepository;
 import com.TRA.tra24Springboot.Repositories.ProductDetailsRepository;
@@ -25,6 +26,7 @@ public class OrderServices {
     OrderDTO orderDTO;
 
     //method to create the order
+    @TrackExecutionTime
     public Order create(Order order){
 
         Product product = new Product();
@@ -60,6 +62,7 @@ public class OrderServices {
     }
 
     //method to update order
+    @TrackExecutionTime
     public String update(Integer id){
         Order order = orderRepository.getById(id);
         order.setOrderDate(new Date());
@@ -68,6 +71,7 @@ public class OrderServices {
     }
 
     //method to cancel order
+    @TrackExecutionTime
     public String cancel(Integer id){
         Order order = orderRepository.getById(id);
         order.setPaymentStatus(PaymentStatus.REFUND);
@@ -78,27 +82,33 @@ public class OrderServices {
     }
 
 
+    @TrackExecutionTime
     public List<OrderDTO> getOrder(){
         List<Order> orders = orderRepository.findAll();
         return orderDTO.convertToDTOList(orders);
     }
 
+    @TrackExecutionTime
     public Order getOrderById(Integer orderID){
         return orderRepository.getOrderById(orderID);
     }
 
+    @TrackExecutionTime
     public List<Order> getOrderByCategoryName(String categoryName){
         return orderRepository.getOrderByCategoryName(categoryName);
     }
 
+    @TrackExecutionTime
     public List<Order> getOrderByStatus(OrderStatus status){
         return orderRepository.getOrderByStatus(status);
     }
 
+    @TrackExecutionTime
     public List<Order> getOrderByPaymentStatus(PaymentStatus paymentStatus){
         return orderRepository.getOrderByPaymentStatus(paymentStatus);
     }
 
+    @TrackExecutionTime
     public List<Order> getOrderByPaymentType(PaymentType paymentType){
         return orderRepository.getOrderByPaymentType(paymentType);
     }

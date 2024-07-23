@@ -1,5 +1,6 @@
 package com.TRA.tra24Springboot.Services;
 
+import com.TRA.tra24Springboot.Logging.TrackExecutionTime;
 import com.slack.api.Slack;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -14,6 +15,7 @@ public class SlackService {
     @Value("${slack.token}")
     private String slackToken;
 
+    @TrackExecutionTime
     public void sendMessage( String channel, String message) {
         Slack slack = Slack.getInstance();
 

@@ -1,6 +1,7 @@
 package com.TRA.tra24Springboot.Services;
 
 import com.TRA.tra24Springboot.DTO.SupplierDTO;
+import com.TRA.tra24Springboot.Logging.TrackExecutionTime;
 import com.TRA.tra24Springboot.Models.*;
 import com.TRA.tra24Springboot.Repositories.OrderRepository;
 import com.TRA.tra24Springboot.Repositories.ProductDetailsRepository;
@@ -30,6 +31,7 @@ public class SupplierServices {
 
     SupplierDTO supplierDTO;
 
+    @TrackExecutionTime
     public Supplier add(Supplier supplier) {
 
         ProductDetails productDetails = new ProductDetails();
@@ -79,6 +81,7 @@ public class SupplierServices {
         return supplierRepository.save(supplier);
     }
 
+    @TrackExecutionTime
     public String updateMinimumOrderQuantity(Integer id, Integer quantity){
         Supplier supplier = supplierRepository.getById(id);
         supplier.setMinimumOrderQuantity(quantity);
@@ -88,6 +91,7 @@ public class SupplierServices {
         return "updated successfully";
     }
 
+    @TrackExecutionTime
     public String remove(Integer id){
         Supplier supplier = supplierRepository.getById(id);
         supplier.setIsActive(Boolean.FALSE);
@@ -96,31 +100,38 @@ public class SupplierServices {
         return "Removed Successfully";
     }
 
+    @TrackExecutionTime
     public List<SupplierDTO> getSuppliers(){
         List<Supplier> suppliers = supplierRepository.findAll();
         return supplierDTO.convertToDTOList(suppliers);
     }
 
+    @TrackExecutionTime
     public Supplier getSupplierById(Integer supplierId){
         return supplierRepository.getSupplierById(supplierId);
     }
 
+    @TrackExecutionTime
     public List<Supplier> getSupplierByCompanyName(String companyName){
         return supplierRepository.getSupplierByCompanyName(companyName);
     }
 
+    @TrackExecutionTime
     public List<Supplier> getSupplierByCountry(String country){
         return supplierRepository.getSupplierByCountry(country);
     }
 
+    @TrackExecutionTime
     public List<Supplier> getSupplierByMinimumQty(Integer minimumOrderQuantity){
         return supplierRepository.getSupplierByMinimumOrderQty(minimumOrderQuantity);
     }
 
+    @TrackExecutionTime
     public List<Supplier> getSupplierByShippingMethod(String shippingMethods){
         return supplierRepository.getSupplierByShippingMethod(shippingMethods);
     }
 
+    @TrackExecutionTime
     public List<Supplier> getSupplierByPaymentMethod(PaymentType paymentMethods){
         return supplierRepository.getSupplierByPaymentMethod(paymentMethods);
     }

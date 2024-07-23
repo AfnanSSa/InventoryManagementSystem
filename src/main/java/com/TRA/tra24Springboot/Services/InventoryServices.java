@@ -1,6 +1,7 @@
 package com.TRA.tra24Springboot.Services;
 
 import com.TRA.tra24Springboot.DTO.InventoryDTO;
+import com.TRA.tra24Springboot.Logging.TrackExecutionTime;
 import com.TRA.tra24Springboot.Models.*;
 import com.TRA.tra24Springboot.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class InventoryServices {
     InventoryDTO inventoryDTO;
 
     //method for receiving new stock
+    @TrackExecutionTime
     public Inventory receiveNewStock(Inventory inventory){
 
         ProductDetails productDetails = new ProductDetails();
@@ -86,6 +88,7 @@ public class InventoryServices {
     }
 
     //method to returns
+    @TrackExecutionTime
     public Inventory returns(Integer id) {
         Inventory inventory = inventoryRepository.getById(id);
 
@@ -93,6 +96,7 @@ public class InventoryServices {
     }
 
     //method of write-offs
+    @TrackExecutionTime
     public Inventory writeOff(Integer id){
         Inventory inventory = inventoryRepository.getById(id);
         inventory.setIsActive(Boolean.FALSE);
@@ -102,23 +106,28 @@ public class InventoryServices {
     }
 
     //method for reporting inventory
+    @TrackExecutionTime
     public List<InventoryDTO> getInventory() {
         List<Inventory> inventories = inventoryRepository.findAll();
         return inventoryDTO.convertToDTOList(inventories);
     }
 
+    @TrackExecutionTime
     public Inventory getInventoryById(Integer inventoryID){
         return inventoryRepository.getInventoryById(inventoryID);
     }
 
+    @TrackExecutionTime
     public List<Inventory> getInventoryByAvailability(Boolean isActive){
         return inventoryRepository.getInventoryByAvailability(isActive);
     }
 
+    @TrackExecutionTime
     public List<Inventory> getInventoryByLocation(String location){
         return inventoryRepository.getInventoryByLocation(location);
     }
 
+    @TrackExecutionTime
     public List<Inventory> getInventoryByAdminName(String admin){
         return inventoryRepository.getInventoryByAdminName(admin);
     }
