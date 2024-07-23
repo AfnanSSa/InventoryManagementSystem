@@ -1,6 +1,7 @@
 package com.TRA.tra24Springboot.Controllers;
 
 import com.TRA.tra24Springboot.DTO.InventoryDTO;
+import com.TRA.tra24Springboot.Logging.TrackExecutionTime;
 import com.TRA.tra24Springboot.Models.Inventory;
 import com.TRA.tra24Springboot.Services.InventoryServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +60,8 @@ public class  InventoryController {
     public List<Inventory> getInventoryByAdminName(@RequestParam String admin){
         return inventoryServices.getInventoryByAdminName(admin);
     }
-
     @GetMapping("word")
+    @TrackExecutionTime
     public String sayHi(@RequestParam String word){
         return word;
     }
