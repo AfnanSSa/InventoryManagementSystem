@@ -1,7 +1,7 @@
 package com.TRA.tra24Springboot.Services;
 
 import com.TRA.tra24Springboot.DTO.InventoryDTO;
-import com.TRA.tra24Springboot.Logging.TrackExecutionTime;
+import com.TRA.tra24Springboot.AOP.TrackExecutionTime;
 import com.TRA.tra24Springboot.Models.*;
 import com.TRA.tra24Springboot.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
