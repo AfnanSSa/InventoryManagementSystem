@@ -37,12 +37,12 @@ public class ServicesLoggingAdvice {
         String className = pjp.getTarget().getClass().toString();
         Object[] array = pjp.getArgs();
 
-        logger.info("\n***** Before function execution ****"+"\nThis class is running: " + className + "\nThis function is running " + methodName + "() " + "\nFunction arguments : "
+        logger.info("\n***** Before function execution ****" + "\nThis class is running: " + className + "\nThis function is running " + methodName + "() " + "\nFunction arguments : "
                 + mapper.writeValueAsString(array));
 
         Object object = pjp.proceed();
 
-        logger.info("\n**** After function execution ****"+ "\nThis class is running: " + className + "\nThis function is running " + methodName + "()" + "\nResponse : "
+        logger.info("\n**** After function execution ****" + "\nThis class is running: " + className + "\nThis function is running " + methodName + "()" + "\nResponse : "
                 + mapper.writeValueAsString(object));
         return object;
     }

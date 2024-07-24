@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ExecutionTimeTrackerAdvice {
-    Logger logger=LoggerFactory.getLogger(ExecutionTimeTrackerAdvice.class);
+    Logger logger = LoggerFactory.getLogger(ExecutionTimeTrackerAdvice.class);
 
     @Around("@annotation(com.TRA.tra24Springboot.Logging.TrackExecutionTime)")
     public Object trackTime(ProceedingJoinPoint pjp) throws Throwable {
-        long startTime=System.currentTimeMillis();
-        Object obj=pjp.proceed();
-        long endTime=System.currentTimeMillis();
-        logger.info("\nMethod name: " + pjp.getSignature().getName() + "() \ntime taken to execute : " + (endTime-startTime) + " ms.");
+        long startTime = System.currentTimeMillis();
+        Object obj = pjp.proceed();
+        long endTime = System.currentTimeMillis();
+        logger.info("\nMethod name: " + pjp.getSignature().getName() + "() \ntime taken to execute : " + (endTime - startTime) + " ms.");
         return obj;
     }
 
