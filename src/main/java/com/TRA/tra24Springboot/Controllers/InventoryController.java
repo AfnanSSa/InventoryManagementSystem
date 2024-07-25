@@ -5,6 +5,7 @@ import com.TRA.tra24Springboot.Models.Inventory;
 import com.TRA.tra24Springboot.Services.InventoryServices;
 import com.TRA.tra24Springboot.Services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class  InventoryController {
         return inventoryServices.writeOff(id);
     }
 
+    @Scheduled(cron = "0 0 * * * ?")
     @GetMapping("get")
     //method to get the inventory
     public List<InventoryDTO> get() throws Exception{
