@@ -9,8 +9,7 @@ import java.util.List;
 @Data
 public class InventoryDTO {
     List<SupplierDTO> suppliers;
-    String openingHours;
-    String closingHours;
+    String location;
     String phoneNumber;
     String admin;
 
@@ -18,8 +17,7 @@ public class InventoryDTO {
         InventoryDTO inventoryDTO = new InventoryDTO();
         inventoryDTO.setAdmin(inventory.getAdmin());
         inventoryDTO.setPhoneNumber(inventory.getPhoneNumber());
-        inventoryDTO.setOpeningHours(inventory.getOpeningHours());
-        inventoryDTO.setClosingHours(inventory.getClosingHours());
+        inventoryDTO.setLocation(inventory.getLocation());
         inventoryDTO.setSuppliers(SupplierDTO.convertToDTOList(inventory.getSupplier()));
 
         return inventoryDTO;
