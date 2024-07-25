@@ -3,6 +3,7 @@ package com.TRA.tra24Springboot.Controllers;
 import com.TRA.tra24Springboot.DTO.InventoryDTO;
 import com.TRA.tra24Springboot.Models.Inventory;
 import com.TRA.tra24Springboot.Services.InventoryServices;
+import com.TRA.tra24Springboot.Services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class  InventoryController {
     @Autowired
     InventoryServices inventoryServices;
+    @Autowired
+    ReportService reportService;
 
 
     //method for receiving new stock
@@ -36,7 +39,8 @@ public class  InventoryController {
 
     @GetMapping("get")
     //method to get the inventory
-    public List<InventoryDTO> get(){
+    public List<InventoryDTO> get() throws Exception{
+        reportService.createSchoolReport();
         return inventoryServices.getInventory();
     }
 
