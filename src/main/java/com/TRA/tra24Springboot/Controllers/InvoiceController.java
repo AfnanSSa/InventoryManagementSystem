@@ -7,9 +7,7 @@ import com.TRA.tra24Springboot.Services.SlackService;
 import com.TRA.tra24Springboot.Utils.DateHelperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,6 +28,10 @@ public class InvoiceController {
         return invoiceServices.createInvoice(invoice);
     }
 
+    @GetMapping("get")
+    public Invoice getInvoiceById(@RequestParam Integer id){
+        return invoiceServices.getBInvoiceById(id);
+    }
     @Scheduled(cron = "0 0 9 * * ?")
     @PostMapping("dueDate")
     public void senDueDateReminder() {
