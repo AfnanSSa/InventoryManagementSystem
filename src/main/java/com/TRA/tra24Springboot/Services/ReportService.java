@@ -16,7 +16,6 @@ import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ReportService {
@@ -27,7 +26,6 @@ public class ReportService {
 
     public void createSchoolReport() throws Exception {
         List<InventoryDTO> inventoryDTOList = inventoryServices.getInventory();
-        UUID uuid = UUID.randomUUID();
         String timeStamp = DateHelperUtils.formatDate(new Date(), "yyyy-MM-dd_HH-mm-ss");
 
         String pathToSave = "C:\\Users\\TRA\\Downloads\\";
@@ -41,7 +39,6 @@ public class ReportService {
         System.out.println("Report is printed: " + fileName);
 
         sendReportByEmail(fileName); //sending the generated report via email
-
     }
 
     private void sendReportByEmail(String filePath) throws MessagingException {
@@ -58,5 +55,4 @@ public class ReportService {
         mailSender.send(message);
         System.out.println("Email sent successfully with attachment: " + reportFile.getName());
     }
-
 }
