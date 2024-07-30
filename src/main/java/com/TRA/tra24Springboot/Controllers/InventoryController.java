@@ -4,7 +4,10 @@ import com.TRA.tra24Springboot.DTO.InventoryDTO;
 import com.TRA.tra24Springboot.Models.Inventory;
 import com.TRA.tra24Springboot.Services.InventoryServices;
 import com.TRA.tra24Springboot.Services.ReportService;
+import com.TRA.tra24Springboot.Services.SlackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,8 @@ public class  InventoryController {
     InventoryServices inventoryServices;
     @Autowired
     ReportService reportService;
+    @Autowired
+    SlackService slackService;
 
 
     //method for receiving new stock
@@ -24,13 +29,6 @@ public class  InventoryController {
     public Inventory receiveNewStock(Inventory inventory){
         return inventoryServices.receiveNewStock(inventory);
     }
-
-    //method for returns
-/*    @PutMapping("return")
-    //method to returns
-    public Inventory returns(@RequestParam Integer id) {
-        return inventoryServices.returns(id);
-    }*/
 
     //method of write-offs
     @PutMapping("write")
@@ -41,9 +39,33 @@ public class  InventoryController {
     @Scheduled(cron = "0 0 * * * ?")
     @GetMapping("get")
     //method to get the inventory
-    public List<InventoryDTO> get() throws Exception{
-        reportService.createSchoolReport();
-        return inventoryServices.getInventory();
+    public ResponseEntity<?> get() throws Exception{
+        try {
+            List<InventoryDTO> inventories = inventoryServices.getInventory();
+            StringBuilder inventoryReport = new StringBuilder();
+
+            inventoryReport.append("Hourly Inventory Report");
+            for (InventoryDTO inventory : inventories) {
+                inventoryReport
+                        .append(".....................\n")
+                        .append("Inventory Location: ")
+                        .append(inventory.getLocation()).append("\n")
+                        .append("Admin: ")
+                        .append(inventory.getAdmin()).append("\n")
+                        .append("Phone number: ")
+                        .append(inventory.getPhoneNumber()).append("\n");
+
+            }
+
+            slackService.sendMessage("#afnan", inventoryReport.toString());
+            inventoryReport.setLength(0);
+
+            reportService.createSchoolReport();
+            return new ResponseEntity<>(inventories, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>("Retrieving inventories failed! " +
+                    e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("getById")
